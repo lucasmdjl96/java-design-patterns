@@ -1,7 +1,7 @@
 package singleton.service;
 
-public class SingletonExtension1 extends ExtensibleSingleton {
-    SingletonExtension1() {}
+enum SingletonExtension1 implements ExtensibleSingleton {
+    INSTANCE;
     @Override
     public void printName() {
         System.out.println("Singleton Extension 1");

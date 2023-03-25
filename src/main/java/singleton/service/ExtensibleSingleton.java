@@ -1,26 +1,33 @@
 package singleton.service;
 
-public class ExtensibleSingleton {
-    private volatile static ExtensibleSingleton INSTANCE;
-
-    public static synchronized void register(Extension extension) {
-        if (INSTANCE == null)
-            INSTANCE = extension.extensibleSingleton;
-    }
-    public static ExtensibleSingleton getInstance() {
-        if (INSTANCE == null)
-            register(Extension.BASE);
-        return INSTANCE;
-    }
-
-    public void printName() {
+public sealed interface ExtensibleSingleton
+        permits DefaultSingleton, SingletonExtension1, SingletonExtension2 {
+    default void printName() {
         System.out.println("Extensible Singleton");
     }
-    protected ExtensibleSingleton() {}
-    public enum Extension {
-        BASE(new ExtensibleSingleton()),
-        EXTENSION_1(new SingletonExtension1()),
-        EXTENSION_2(new SingletonExtension2());
+    static ExtensibleSingleton getInstance() {
+        return InstanceHolder.getInstance();
+    }
+    static void register(Extension extension) {
+        InstanceHolder.register(extension);
+    }
+    final class InstanceHolder {
+        private InstanceHolder() {}
+        private static ExtensibleSingleton INSTANCE;
+        private static synchronized void register(Extension extension) {
+            if (INSTANCE == null)
+                INSTANCE = extension.extensibleSingleton;
+        }
+        private static ExtensibleSingleton getInstance() {
+            if (INSTANCE == null)
+                register(Extension.DEFAULT);
+            return INSTANCE;
+        }
+    }
+    enum Extension {
+        DEFAULT(DefaultSingleton.INSTANCE),
+        EXTENSION_1(SingletonExtension1.INSTANCE),
+        EXTENSION_2(SingletonExtension2.INSTANCE);
         final ExtensibleSingleton extensibleSingleton;
         Extension(ExtensibleSingleton extensibleSingleton) {
             this.extensibleSingleton = extensibleSingleton;
