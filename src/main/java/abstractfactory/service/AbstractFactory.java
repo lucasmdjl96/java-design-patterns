@@ -1,10 +1,6 @@
 package abstractfactory.service;
 
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
-
 public interface AbstractFactory {
     default AbstractProductA createProductA() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
@@ -12,17 +8,19 @@ public interface AbstractFactory {
     default AbstractProductB createProductB() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
-
-    static AbstractFactory getFactory(@NotNull Type type) {
-        return type.supplier.get();
-    }
-
+    /*
+    Factory method design pattern for creating factories. In this case
+    AbstractFactory plays the role of Product and Type plays the role of Creator.
+    */
     enum Type {
-        FACTORY_1(() -> ConcreteFactory1.INSTANCE),
-        FACTORY_2(() -> ConcreteFactory2.INSTANCE);
-        private final Supplier<AbstractFactory> supplier;
-        Type(Supplier<AbstractFactory> supplier) {
-            this.supplier = supplier;
+        FACTORY_1(ConcreteFactory1.INSTANCE),
+        FACTORY_2(ConcreteFactory2.INSTANCE);
+        private final AbstractFactory factory;
+        Type(AbstractFactory factory) {
+            this.factory = factory;
+        }
+        public AbstractFactory get() {
+            return factory;
         }
     }
 }
