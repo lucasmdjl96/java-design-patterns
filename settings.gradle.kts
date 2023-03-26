@@ -9,4 +9,5 @@ include(
     "structural:adapter",
     "structural:bridge",
     "structural:composite",
+    "structural:decorator",
 )
