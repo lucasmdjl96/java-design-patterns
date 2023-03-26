@@ -6,5 +6,6 @@ include(
     "creational:prototype",
     "creational:singleton",
 
-    "structural:adapter"
+    "structural:adapter",
+    "structural:bridge",
 )
