@@ -13,15 +13,18 @@ public sealed interface ExtensibleSingleton
     }
     final class InstanceHolder {
         private InstanceHolder() {}
-        private static ExtensibleSingleton INSTANCE;
-        private static synchronized void register(Extension extension) {
-            if (INSTANCE == null)
-                INSTANCE = extension.extensibleSingleton;
+        private static volatile ExtensibleSingleton INSTANCE;
+        private static synchronized ExtensibleSingleton register(Extension extension) {
+            ExtensibleSingleton result = INSTANCE;
+            if (result == null)
+                INSTANCE = result = extension.extensibleSingleton;
+            return result;
         }
         private static ExtensibleSingleton getInstance() {
-            if (INSTANCE == null)
-                register(Extension.DEFAULT);
-            return INSTANCE;
+            ExtensibleSingleton result = INSTANCE;
+            if (result == null)
+                result = register(Extension.DEFAULT);
+            return result;
         }
     }
     enum Extension {
