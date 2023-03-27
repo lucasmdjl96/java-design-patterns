@@ -10,4 +10,5 @@ include(
     "structural:bridge",
     "structural:composite",
     "structural:decorator",
+    "structural:facade",
 )
