@@ -11,4 +11,5 @@ include(
     "structural:composite",
     "structural:decorator",
     "structural:facade",
+    "structural:flyweight",
 )
