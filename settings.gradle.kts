@@ -12,4 +12,5 @@ include(
     "structural:decorator",
     "structural:facade",
     "structural:flyweight",
+    "structural:proxy",
 )
