@@ -15,4 +15,5 @@ include(
     "structural:proxy",
 
     "behavioral:chain-of-responsibility",
+    "behavioral:command",
 )
