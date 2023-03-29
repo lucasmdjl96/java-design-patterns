@@ -13,4 +13,6 @@ include(
     "structural:facade",
     "structural:flyweight",
     "structural:proxy",
+
+    "behavioral:chain-of-responsibility",
 )
