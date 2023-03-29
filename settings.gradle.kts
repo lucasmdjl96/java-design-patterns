@@ -17,4 +17,5 @@ include(
     "behavioral:chain-of-responsibility",
     "behavioral:command",
     "behavioral:interpreter",
+    "behavioral:iterator",
 )
