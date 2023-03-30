@@ -18,4 +18,5 @@ include(
     "behavioral:command",
     "behavioral:interpreter",
     "behavioral:iterator",
+    "behavioral:mediator",
 )
