@@ -20,4 +20,5 @@ include(
     "behavioral:iterator",
     "behavioral:mediator",
     "behavioral:memento",
+    "behavioral:observer",
 )
