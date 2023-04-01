@@ -24,4 +24,5 @@ include(
     "behavioral:state",
     "behavioral:strategy",
     "behavioral:template-method",
+    "behavioral:visitor",
 )
