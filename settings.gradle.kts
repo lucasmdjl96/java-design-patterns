@@ -22,4 +22,5 @@ include(
     "behavioral:memento",
     "behavioral:observer",
     "behavioral:state",
+    "behavioral:strategy",
 )
